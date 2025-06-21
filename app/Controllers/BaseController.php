@@ -35,7 +35,7 @@ abstract class BaseController extends Controller
      *
      * @var list<string>
      */
-    protected $helpers = [];
+    protected $helpers = ['form','encryption', 'html', 'text', 'number'];
 
     protected $dataToView = [];
 
