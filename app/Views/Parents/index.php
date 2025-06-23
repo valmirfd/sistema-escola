@@ -6,7 +6,7 @@
 
 <?= $this->section('css'); ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.24.1/dist/bootstrap-table.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
@@ -20,7 +20,7 @@
                 </a>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
-                <div class="table-responsive p-2">
+                <div class="table-responsive p-4">
                     <table class="table align-items-center justify-content-center mb-0" id="table">
                         <thead>
                             <tr>
@@ -32,6 +32,7 @@
                         </thead>
 
                         <tbody>
+
                             <?php foreach ($parents as $parent): ?>
                                 <tr>
                                     <td class="align-middle pb-0">
@@ -63,6 +64,7 @@
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
+
                     </table>
                 </div>
             </div>
@@ -74,7 +76,8 @@
 
 <?= $this->section('js'); ?>
 
-<script src="<?= base_url('assets/'); ?>jquery/jquery.min.js"></script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.24.1/dist/bootstrap-table.min.js"></script>
 
 <script>
@@ -94,12 +97,20 @@
                 title: 'Nome',
                 sortable: false,
             },
+<<<<<<< HEAD
             {
+=======
+              {
+>>>>>>> 002
                 field: 'email',
                 title: 'Email',
                 sortable: false,
             },
+<<<<<<< HEAD
             {
+=======
+              {
+>>>>>>> 002
                 field: 'cpf',
                 title: 'CPF',
                 sortable: false,
