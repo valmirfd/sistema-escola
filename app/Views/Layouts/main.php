@@ -12,6 +12,8 @@
     <!-- Nucleo Icons -->
     <link href="<?= base_url('assets/'); ?>css/nucleo-icons.css" rel="stylesheet" />
     <link href="<?= base_url('assets/') ?>css/nucleo-svg.css" rel="stylesheet" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="<?= base_url('assets/bootstrap/bootstrap.min.css') ?>">
     <!-- fontawesome -->
     <link rel="stylesheet" href="<?= base_url('assets/fontawesome/all.min.css') ?>">
 
@@ -24,6 +26,8 @@
             min-height: calc(100vh - (64px + 96px));
         }
     </style>
+
+    <link rel="stylesheet" href="<?= base_url('assets/toastify/toastify.min.css'); ?>">
 
     <?php echo $this->renderSection('css'); ?>
 </head>
@@ -318,6 +322,7 @@
     <!--   Core JS Files   -->
     <script src="<?= base_url('assets/') ?>js/core/popper.min.js"></script>
     <script src="<?= base_url('assets/') ?>js/core/bootstrap.min.js"></script>
+    
     <script src="<?= base_url('assets/') ?>js/plugins/perfect-scrollbar.min.js"></script>
     <script src="<?= base_url('assets/') ?>js/plugins/smooth-scrollbar.min.js"></script>
     <script src="<?= base_url('assets/') ?>js/plugins/chartjs.min.js"></script>
@@ -502,6 +507,11 @@
     </script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="<?= base_url('assets/') ?>js/soft-ui-dashboard.min.js?v=1.0.3"></script>
+
+    <script src="<?= base_url('assets/toastify/toastify-js.js'); ?>"></script>
+
+    <?= $this->include('Layouts/_session_messages'); ?>
+
 
     <?php echo $this->renderSection('js'); ?>
 </body>

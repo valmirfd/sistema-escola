@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use App\Validation\AddressValidation;
+use App\Validation\ParentValidation;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Validation\StrictRules\CreditCardRules;
 use CodeIgniter\Validation\StrictRules\FileRules;
@@ -25,6 +27,8 @@ class Validation extends BaseConfig
         FormatRules::class,
         FileRules::class,
         CreditCardRules::class,
+        ParentValidation::class, //Por causa do Valitadion Trait
+        AddressValidation::class, //Por causa do Valitadion Trait
     ];
 
     /**

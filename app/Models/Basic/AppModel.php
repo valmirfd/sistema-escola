@@ -39,7 +39,7 @@ abstract class AppModel extends Model
             $code = '';
 
             for ($i = 0; $i < $length; $i++) {
-                $code = $characters[random_int(0,  strlen($characters) - 1)];
+                $code .= $characters[random_int(0,  strlen($characters) - 1)];
             }
         } while ($this->where(['code' => $code])->countAllResults() > 0);
 
