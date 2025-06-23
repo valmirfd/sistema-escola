@@ -87,7 +87,8 @@
         pageSize: 10,
         paginationHAlign: 'left',
         paginationParts: ['pageList'],
-        columns: [{
+        columns: [
+            {
                 field: 'actions',
                 title: 'Ações',
                 sortable: false,
@@ -97,20 +98,12 @@
                 title: 'Nome',
                 sortable: false,
             },
-<<<<<<< HEAD
             {
-=======
-              {
->>>>>>> 002
                 field: 'email',
                 title: 'Email',
                 sortable: false,
             },
-<<<<<<< HEAD
             {
-=======
-              {
->>>>>>> 002
                 field: 'cpf',
                 title: 'CPF',
                 sortable: false,
