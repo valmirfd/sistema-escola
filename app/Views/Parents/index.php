@@ -79,7 +79,34 @@
 
 <script>
     $('#table').bootstrapTable({
-        search: true
+        search: true,
+        pagination: true,
+        pageSize: 10,
+        paginationHAlign: 'left',
+        paginationParts: ['pageList'],
+        columns: [{
+                field: 'actions',
+                title: 'Ações',
+                sortable: false,
+            },
+            {
+                field: 'name',
+                title: 'Nome',
+                sortable: false,
+            },
+            {
+                field: 'email',
+                title: 'Email',
+                sortable: false,
+            },
+            {
+                field: 'cpf',
+                title: 'CPF',
+                sortable: false,
+            },
+        ],
+
+
     });
 </script>
 
