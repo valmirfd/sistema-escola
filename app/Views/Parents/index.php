@@ -28,6 +28,7 @@
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nome</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">CPF</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Celular</th>
                             </tr>
                         </thead>
 
@@ -61,6 +62,13 @@
                                             </div>
                                         </div>
                                     </td>
+                                    <td class="align-middle text-center">
+                                        <div class="d-flex align-items-start justify-content-start">
+                                            <div>
+                                                <h6 class="mb-0 text-sm"><?= $parent->phone; ?></h6>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -77,7 +85,7 @@
 <?= $this->section('js'); ?>
 
 
-
+<script src="<?= base_url('assets/'); ?>jquery/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.24.1/dist/bootstrap-table.min.js"></script>
 
 <script>
@@ -87,8 +95,7 @@
         pageSize: 10,
         paginationHAlign: 'left',
         paginationParts: ['pageList'],
-        columns: [
-            {
+        columns: [{
                 field: 'actions',
                 title: 'Ações',
                 sortable: false,
@@ -96,7 +103,7 @@
             {
                 field: 'name',
                 title: 'Nome',
-                sortable: false,
+                sortable: true,
             },
             {
                 field: 'email',
@@ -106,6 +113,11 @@
             {
                 field: 'cpf',
                 title: 'CPF',
+                sortable: false,
+            },
+            {
+                field: 'phone',
+                title: 'Celular',
                 sortable: false,
             },
         ],

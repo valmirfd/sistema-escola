@@ -321,9 +321,6 @@
         </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="<?= base_url('assets/') ?>js/core/popper.min.js"></script>
-    <script src="<?= base_url('assets/js/core/bootstrap.bundle.min.js') ?>"></script>
-    <script src="<?= base_url('assets/'); ?>jquery/jquery.min.js"></script>
     <script src="<?= base_url('assets/js/core/bootstrap.bundle.min.js') ?>"></script>
     <script src="<?= base_url('assets/') ?>js/plugins/perfect-scrollbar.min.js"></script>
     <script src="<?= base_url('assets/') ?>js/plugins/smooth-scrollbar.min.js"></script>
