@@ -13,7 +13,8 @@
     <link href="<?= base_url('assets/'); ?>css/nucleo-icons.css" rel="stylesheet" />
     <link href="<?= base_url('assets/') ?>css/nucleo-svg.css" rel="stylesheet" />
     <!-- bootstrap -->
-    <link rel="stylesheet" href="<?= base_url('assets/bootstrap/bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/js/core/bootstrap.min.css') ?>">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <!-- fontawesome -->
     <link rel="stylesheet" href="<?= base_url('assets/fontawesome/all.min.css') ?>">
 
@@ -320,9 +321,7 @@
         </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="<?= base_url('assets/') ?>js/core/popper.min.js"></script>
-    <script src="<?= base_url('assets/') ?>js/core/bootstrap.min.js"></script>
-    
+    <script src="<?= base_url('assets/js/core/bootstrap.bundle.min.js') ?>"></script>
     <script src="<?= base_url('assets/') ?>js/plugins/perfect-scrollbar.min.js"></script>
     <script src="<?= base_url('assets/') ?>js/plugins/smooth-scrollbar.min.js"></script>
     <script src="<?= base_url('assets/') ?>js/plugins/chartjs.min.js"></script>
