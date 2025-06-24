@@ -12,15 +12,12 @@ class Address extends Entity
 
     public function getFullAddress(): string
     {
+        $number = empty($this->number) ? 'N/A' : $this->number;
+
         return sprintf(
-            '%s',
-            '%s',
-            '%s',
-            '%s',
-            '%s',
-            '%s',
+            '%s, %s, %s, %s, %s, %s',
             $this->street,
-            $this->number ?? 'N/A',
+            $number,
             $this->district,
             $this->city,
             $this->state,

@@ -80,4 +80,91 @@ class ParentsController extends BaseController
             ->route('parents.web')
             ->with('success', 'Responsável cadastrado com sucesso!');
     }
+
+    public function show($id): string
+    {
+        $id = (string) Decrypt($id);
+
+        $parent = $this->parentModel->getByID(id: $id, withAddress: true);
+
+        $this->dataToView['title'] = "Detalhes do responsável";
+        $this->dataToView['parent'] = $parent;
+
+        return view(self::VIEWS_DIRECTORY . 'show', $this->dataToView);
+    }
+
+    public function edit($id): string
+    {
+        $id = (string) Decrypt($id);
+
+        $parent = $this->parentModel->getByID(id: $id, withAddress: true);
+
+        $this->dataToView['title'] = "Editar responsável";
+        $this->dataToView['parent'] = $parent;
+        $this->dataToView['errors'] = session()->getFlashdata('errors');
+
+        return view(self::VIEWS_DIRECTORY . 'edit', $this->dataToView);
+    }
+
+    public function update(string $id): RedirectResponse
+    {
+        $id = (string) Decrypt($id);
+
+        $parent = $this->parentModel->getByID(id: $id, withAddress: true);
+
+        $rules = (new ParentValidation)->getRules($parent->id);
+
+        if (!$this->validate($rules)) {
+            return redirect()
+                ->back()
+                ->withInput() // Para manter os dados no input
+                ->with('errors', $this->validator->getErrors());
+        }
+
+        //populamos o responsável com os dados validados
+        $parent->fill($this->validator->getValidated());
+
+        $rules = (new AddressValidation)->getRules();
+
+        if (!$this->validate($rules)) {
+            return redirect()
+                ->back()
+                ->withInput() // Para manter os dados no input
+                ->with('errors', $this->validator->getErrors());
+        }
+
+        //recuperamos o endereço associado
+        $address = $parent->address;
+
+        $address->fill($this->validator->getValidated());
+
+        $success = $this->parentModel->store(parent: $parent, address: $address);
+
+        if (!$success) {
+            return redirect()
+                ->back()
+                ->with('danger', 'Oppss! Não foi possível editar o responsável!');
+        }
+
+        return redirect()
+            ->route('parents.show', [Encrypt($parent->id)])
+            ->with('success', 'Responsável editado com sucesso!');
+    }
+
+    public function destroy(string $id): RedirectResponse
+    {
+        $id = (string) Decrypt($id);
+
+        $parent = $this->parentModel->getByID(id: $id);
+
+        $success = $this->parentModel->destroy($parent);
+
+        if (!$success) {
+            return redirect()
+                ->back()
+                ->with('danger', 'Oppss! Não foi possível excluir o responsável!');
+        }
+
+        return redirect()->route('parents.web')->with('success', 'Responsável excluído com sucesso!');
+    }
 }

@@ -24,11 +24,11 @@
                     <table class="table align-items-center justify-content-center mb-0" id="table">
                         <thead>
                             <tr>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ações</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nome</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">CPF</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Celular</th>
+                                <th class="text-secondary text-xxs font-weight-bolder opacity-7">Ações</th>
+                                <th class="text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nome</th>
+                                <th class="text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
+                                <th class="text-secondary text-xxs font-weight-bolder opacity-7 ps-2">CPF</th>
+                                <th class="text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Celular</th>
                             </tr>
                         </thead>
 
@@ -37,7 +37,7 @@
                             <?php foreach ($parents as $parent): ?>
                                 <tr>
                                     <td class="align-middle pb-0">
-                                        <a class="btn bg-gradient-info btn-sm" href="<?= route_to('parents.show', $parent->code); ?>">
+                                        <a class="btn bg-gradient-info btn-sm" href="<?= route_to('parents.show', Encrypt($parent->id)); ?>">
                                             <i class="fa-solid fa-eye me-2" style="font-size: 16px;"></i>Detalhes
                                         </a>
                                     </td>
@@ -108,17 +108,17 @@
             {
                 field: 'email',
                 title: 'Email',
-                sortable: false,
+                sortable: true,
             },
             {
                 field: 'cpf',
                 title: 'CPF',
-                sortable: false,
+                sortable: true,
             },
             {
                 field: 'phone',
                 title: 'Celular',
-                sortable: false,
+                sortable: true,
             },
         ],
 

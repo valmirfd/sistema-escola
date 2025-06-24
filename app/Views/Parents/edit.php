@@ -21,8 +21,9 @@
             </div>
             <div class="card-body">
                 <?= form_open(
-                    action: route_to('parents.create'),
-                    attributes: ['class' => 'form-floating']
+                    action: route_to('parents.update', Encrypt($parent->id)),
+                    attributes: ['class' => 'form-floating'],
+                    hidden: ['_method' => 'PUT']
                 ); ?>
 
                 <?= $this->include('Parents/_form'); ?>
