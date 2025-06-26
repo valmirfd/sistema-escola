@@ -15,17 +15,17 @@
     <div class="col-12">
         <div class="card mb-4">
             <div class="card-header pb-0">  
-                <a class="btn btn-sm mb-2" href="<?= route_to('parents.web'); ?>">
+                <a class="btn btn-sm mb-2" href="<?= route_to('students.web'); ?>">
                     <i class="fa-solid fa-arrow-left text-primary me-2" style="font-size: 16px;"></i>
                 </a>
             </div>
             <div class="card-body">
                 <?= form_open(
-                    action: route_to('parents.create'),
+                    action: route_to('students.create'),
                     attributes: ['class' => 'form-floating']
                 ); ?>
 
-                <?= $this->include('Parents/_form'); ?>
+                <?= $this->include('Students/_form'); ?>
 
                 <?= form_close(); ?>
             </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\Api\ApiParentsController;
 use App\Controllers\HomeController;
 use App\Controllers\ParentsController;
 use App\Controllers\StudentsController;
@@ -30,4 +31,10 @@ $routes->group('students', static function ($routes) {
     $routes->get('edit/(:alphanum)', [StudentsController::class, 'edit'], ['as' => 'students.edit']);
     $routes->put('update/(:alphanum)', [StudentsController::class, 'update'], ['as' => 'students.update']);
     $routes->delete('destroy/(:alphanum)', [StudentsController::class, 'destroy'], ['as' => 'students.destroy']);
+});
+
+//Api Parents
+$routes->group('api', static function ($routes) {
+    $routes->get('get-by-cpf', [ApiParentsController::class, 'getByCpf'], ['as' => 'api.fetch.parent.by.cpf']);
+    
 });

@@ -24,10 +24,19 @@
                                 id="cpf"
                                 placeholder="CPF do responsável">
                             <label for="cpf">CPF do responsável para incluir um novo aluno</label>
-                            <?= display_error('cpf', $errors) ?>
+                            
                         </div>
                     </div>
+                    <div class="d-grid gap-2 col-md-2">
+                        <button type="button" id="btnSearchParent" class="btn bg-gradient-dark">Buscar responsável</button>
+                    </div>
+                    <div id="boxBtnNewParent" class="d-grid gap-2 col-md-4 d-none">
+                        <a href="<?= route_to('parents.new'); ?>" id="btnNewParent" class="btn btn-success">
+                            <i class="fa-solid fa-user-plus me-2" style="font-size: 16px;"></i>Cadastrar responsável
+                        </a>
+                    </div>
                 </div>
+
             </div>
             <div class="card-body px-0 pt-0 pb-2">
                 <div class="table-responsive p-4">
@@ -137,7 +146,7 @@
                             duration: 10000,
                             close: true,
                             gravity: "top",
-                            position: "left",
+                            position: "right",
                         }).showToast();
 
                         return;
@@ -155,7 +164,7 @@
                         text: "Erro ao buscar responsável",
                         duration: 10000, // um pouco maior a duração
                         close: true,
-                        gravity: "bottom",
+                        gravity: "top",
                         position: "right",
                         backgroundColor: "#dc3545",
                     }).showToast();
@@ -163,9 +172,11 @@
         });
     });
 </script>
-
-
 <script src="<?= base_url('assets/'); ?>jquery/jquery.min.js"></script>
+
+<script src="<?= base_url('assets/mask/jquery.mask.min.js'); ?>"></script>
+<script src="<?= base_url('assets/mask/app.js'); ?>"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.24.1/dist/bootstrap-table.min.js"></script>
 
 <script>

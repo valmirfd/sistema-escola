@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Entities\ParentStudent;
+use App\Entities\Student;
 use App\Models\StudentModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -23,5 +25,20 @@ class StudentsController extends BaseController
         $this->dataToView['students'] = $this->studentModel->orderBy('id', 'DESC')->findAll();
 
         return view(self::VIEWS_DIRECTORY . 'index', $this->dataToView);
+    }
+
+    public function new(): string
+    {
+        $parentCode = esc($this->request->getGet('parent_code'));
+        dd($parentCode);
+        
+        $this->dataToView['title'] = 'Cadastrar novo estudante';
+        $this->dataToView['student'] = new Student([
+            'parent' => new ParentStudent()
+        ]);
+
+        $this->dataToView['errors'] = session()->getFlashdata('errors');
+
+        return view(self::VIEWS_DIRECTORY . 'new', $this->dataToView);
     }
 }
