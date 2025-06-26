@@ -65,6 +65,14 @@
                 </li>
 
 
+                <li class="nav-item">
+                    <a class="nav-link  <?= url_is("/students*") ? 'active' : ''; ?>" href="<?= route_to('students.web'); ?>">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-graduation-cap" style="color: gray; font-size: 20px;"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Estudantes</span>
+                    </a>
+                </li>
 
 
 
