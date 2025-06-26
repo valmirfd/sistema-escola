@@ -15,9 +15,19 @@
     <div class="col-12">
         <div class="card mb-4">
             <div class="card-header pb-0">
-                <a class="btn bg-gradient-dark btn-sm mb-0 float-start" href="<?= route_to('students.new'); ?>">
-                    <i class="fa-solid fa-user-plus me-2" style="font-size: 16px;"></i>Cadastrar
-                </a>
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-floating mb-3">
+                            <input type="text"
+                                class="form-control cpf"
+                                name="cpf"
+                                id="cpf"
+                                placeholder="CPF do responsável">
+                            <label for="cpf">CPF do responsável para incluir um novo aluno</label>
+                            <?= display_error('cpf', $errors) ?>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
                 <div class="table-responsive p-4">
@@ -83,6 +93,76 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('js'); ?>
+
+<script>
+    // buscamos o responsável quando preenchido o campo de cpf e renderizamos a view para criação de novo aluno
+    document.addEventListener("DOMContentLoaded", function() {
+        const cpfInput = document.getElementById("cpf");
+        const btnSearchParent = document.getElementById("btnSearchParent");
+        const boxBtnNewParent = document.getElementById("boxBtnNewParent");
+
+        btnSearchParent.addEventListener("click", function() {
+
+            // ocultamos o botão para criar o responsável
+            boxBtnNewParent.className = 'd-none';
+
+            const cpf = cpfInput.value;
+
+            if (!cpf) {
+
+                return;
+            }
+
+            btnSearchParent.disabled = true;
+            btnSearchParent.textContent = "Aguarde...";
+
+            // podemos buscar o responsável...
+
+            const url = `<?php echo route_to('api.fetch.parent.by.cpf') ?>?cpf=${cpf}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+
+                    btnSearchParent.disabled = false;
+                    btnSearchParent.textContent = "Buscar responsável";
+
+                    if (data.parent === null) {
+
+                        // exibimos o botão para criar o responsável
+                        boxBtnNewParent.className = 'd-block';
+
+                        Toastify({
+                            text: "Responsável não encontrado",
+                            duration: 10000,
+                            close: true,
+                            gravity: "top",
+                            position: "left",
+                        }).showToast();
+
+                        return;
+
+                    }
+
+                    const parentCode = data.parent.code;
+
+                    window.location.href = '<?php echo route_to('students.new'); ?>?parent_code=' + parentCode;
+                })
+                .catch(error => {
+                    console.error('Erro ao enviar requisição:', error);
+
+                    Toastify({
+                        text: "Erro ao buscar responsável",
+                        duration: 10000, // um pouco maior a duração
+                        close: true,
+                        gravity: "bottom",
+                        position: "right",
+                        backgroundColor: "#dc3545",
+                    }).showToast();
+                });
+        });
+    });
+</script>
 
 
 <script src="<?= base_url('assets/'); ?>jquery/jquery.min.js"></script>

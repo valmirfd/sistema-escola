@@ -7,7 +7,7 @@
                 name="name"
                 id="name"
                 placeholder="Nome completo"
-                value="<?= old('name', $parent->name) ?>">
+                value="<?= old('name', $student->name) ?>">
             <label for="name">Nome competo</label>
             <?= display_error('name', $errors) ?>
         </div>
@@ -19,7 +19,7 @@
                 name="email"
                 id="email"
                 placeholder="Email válido"
-                value="<?= old('email', $parent->email) ?>">
+                value="<?= old('email', $student->email) ?>">
             <label for="email">Email válido</label>
             <?= display_error('email', $errors) ?>
         </div>
@@ -31,7 +31,7 @@
                 name="phone"
                 id="phone"
                 placeholder="Celular"
-                value="<?= old('phone', $parent->phone) ?>">
+                value="<?= old('phone', $student->phone) ?>">
             <label for="phone">Celular</label>
             <?= display_error('phone', $errors) ?>
         </div>
@@ -43,7 +43,7 @@
                 name="cpf"
                 id="cpf"
                 placeholder="CPF"
-                value="<?= old('cpf', $parent->cpf) ?>">
+                value="<?= old('cpf', $student->cpf) ?>">
             <label for="cpf">CPF válido</label>
             <?= display_error('cpf', $errors) ?>
         </div>
@@ -63,7 +63,7 @@
                 name="postalcode"
                 id="postalcode"
                 placeholder="CEP válido"
-                value="<?= old('postalcode', $parent->address->postalcode) ?>">
+                value="<?= old('postalcode', $student->address->postalcode) ?>">
             <label for="postalcode">CEP válido</label>
             <?= display_error('postalcode', $errors) ?>
         </div>
@@ -76,7 +76,7 @@
                 name="street"
                 id="street"
                 placeholder="Rua"
-                value="<?= old('street', $parent->address->street) ?>">
+                value="<?= old('street', $student->address->street) ?>">
             <label for="street">Rua</label>
             <?= display_error('street', $errors) ?>
         </div>
@@ -89,7 +89,7 @@
                 name="number"
                 id="number"
                 placeholder="Número"
-                value="<?= old('number', $parent->address->number) ?>">
+                value="<?= old('number', $student->address->number) ?>">
             <label for="number">Número</label>
         </div>
     </div>
@@ -101,7 +101,7 @@
                 name="city"
                 id="city"
                 placeholder="Cidade"
-                value="<?= old('city', $parent->address->city) ?>">
+                value="<?= old('city', $student->address->city) ?>">
             <label for="city">Cidade</label>
             <?= display_error('city', $errors) ?>
         </div>
@@ -114,7 +114,7 @@
                 name="district"
                 id="district"
                 placeholder="Bairro"
-                value="<?= old('district', $parent->address->district) ?>">
+                value="<?= old('district', $student->address->district) ?>">
             <label for="district">Bairro</label>
             <?= display_error('district', $errors) ?>
         </div>
@@ -127,7 +127,7 @@
                 name="state"
                 id="state"
                 placeholder="Estado"
-                value="<?= old('state', $parent->address->state) ?>">
+                value="<?= old('state', $student->address->state) ?>">
             <label for="state">Estado</label>
             <?= display_error('state', $errors) ?>
         </div>
