@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Entities\ParentStudent;
 use App\Entities\Student;
+use App\Models\ParentModel;
 use App\Models\StudentModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -30,11 +31,13 @@ class StudentsController extends BaseController
     public function new(): string
     {
         $parentCode = esc($this->request->getGet('parent_code'));
-        dd($parentCode);
-        
+
+        $parent = model(ParentModel::class)->getByCode(code: $parentCode);
+
+
         $this->dataToView['title'] = 'Cadastrar novo estudante';
         $this->dataToView['student'] = new Student([
-            'parent' => new ParentStudent()
+            'parent' => $parent
         ]);
 
         $this->dataToView['errors'] = session()->getFlashdata('errors');
