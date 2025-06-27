@@ -88,11 +88,74 @@ class StudentsController extends BaseController
     {
         $id = (string) Decrypt($id);
 
-        $student = $this->studentModel->getByID(id: $id);
+        $student = $this->studentModel->getByID(id: $id, withParent: true);
 
         $this->dataToView['title'] = "Detalhes do estudante";
         $this->dataToView['student'] = $student;
 
         return view(self::VIEWS_DIRECTORY . 'show', $this->dataToView);
+    }
+
+    public function edit($id): string
+    {
+        $id = (string) Decrypt($id);
+
+        $student = $this->studentModel->getByID(id: $id, withParent: true);
+
+        $this->dataToView['title'] = "Editar estudante";
+        $this->dataToView['student'] = $student;
+
+        $this->dataToView['errors'] = session()->getFlashdata('errors');
+
+        return view(self::VIEWS_DIRECTORY . 'edit', $this->dataToView);
+    }
+
+
+    public function update(string $id): RedirectResponse
+    {
+        $id = (string) Decrypt($id);
+
+        $student = $this->studentModel->getByID(id: $id);
+
+        $rules = (new StudentValidation)->getRules($student->id);
+
+        if (!$this->validate($rules)) {
+            return redirect()
+                ->back()
+                ->withInput() // Para manter os dados no input
+                ->with('errors', $this->validator->getErrors());
+        }
+
+        //populamos o responsável com os dados validados
+        $student->fill($this->validator->getValidated());
+
+        $success = $this->studentModel->save($student);
+
+        if (!$success) {
+            return redirect()
+                ->back()
+                ->with('danger', 'Oppss! Não foi possível editar o estudante!');
+        }
+
+        return redirect()
+            ->route('students.show', [Encrypt($student->id)])
+            ->with('success', 'Estudante editado com sucesso!');
+    }
+
+    public function destroy(string $id): RedirectResponse
+    {
+         $id = (string) Decrypt($id);
+
+        $student = $this->studentModel->getByID(id: $id);
+
+        $success = $this->studentModel->delete($student->id);
+
+        if (!$success) {
+            return redirect()
+                ->back()
+                ->with('danger', 'Oppss! Não foi possível excluir o estudante!');
+        }
+
+        return redirect()->route('students.web')->with('success', 'Estudante excluído com sucesso!');
     }
 }

@@ -47,6 +47,12 @@
                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">CPF:</strong> &nbsp; <?= $student->cpf; ?></li>
                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Desde:</strong> &nbsp; <?= $student->created_at->humanize(); ?></li>
                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Atualizado:</strong> &nbsp; <?= $student->updated_at->humanize(); ?></li>
+                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Responsável:</strong>
+                    <a class="btn btn-link mb-0 ms-0" href="<?= route_to('parents.show', Encrypt($student->parent->id)); ?>" target="_blank">
+                        <?= $student->parent->name . " - CPF: {$student->parent->cpf}"; ?>
+                        <i class="fas fa-eye text-success ms-2" style="font-size: 18px;" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver"></i>
+                    </a>
+                </li>
 
             </ul>
         </div>

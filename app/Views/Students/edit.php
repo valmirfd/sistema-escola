@@ -14,19 +14,19 @@
 <div class="row">
     <div class="col-12">
         <div class="card mb-4">
-            <div class="card-header pb-0">  
-                <a class="btn btn-sm mb-2" href="<?= route_to('parents.web'); ?>">
+            <div class="card-header pb-0">
+                <a class="btn btn-sm mb-2" href="<?= route_to('students.show', Encrypt($student->id)); ?>">
                     <i class="fa-solid fa-arrow-left text-primary me-2" style="font-size: 16px;"></i>
                 </a>
             </div>
             <div class="card-body">
                 <?= form_open(
-                    action: route_to('parents.update', Encrypt($parent->id)),
+                    action: route_to('students.update', Encrypt($student->id)),
                     attributes: ['class' => 'form-floating'],
                     hidden: ['_method' => 'PUT']
                 ); ?>
 
-                <?= $this->include('Parents/_form'); ?>
+                <?= $this->include('Students/_form'); ?>
 
                 <?= form_close(); ?>
             </div>
