@@ -3,16 +3,16 @@
 namespace App\Models;
 
 use App\Entities\Address;
-use App\Entities\ParentStudent;
+use App\Entities\Teacher;
 use App\Models\Basic\AppModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
-class ParentModel extends AppModel
+class TeacherModel extends AppModel
 {
-    protected $table            = 'parents';
+    protected $table            = 'teachers';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = ParentStudent::class;
+    protected $returnType       = Teacher::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
@@ -36,7 +36,7 @@ class ParentModel extends AppModel
     protected $beforeInsert   = ['escapeData', 'setCode'];
     protected $beforeUpdate   = ['escapeData'];
 
-    public function store(ParentStudent $parent, Address $address): bool
+    public function store(Teacher $teacher, Address $address): bool
     {
         try {
 
@@ -44,9 +44,9 @@ class ParentModel extends AppModel
             $this->db->transException(true)->transStart();
 
             model(AddressModel::class)->save($address);
-            $parent->address_id = $address->id ?? model(AddressModel::class)->getInsertID();
+            $teacher->address_id = $address->id ?? model(AddressModel::class)->getInsertID();
 
-            $this->save($parent);
+            $this->save($teacher);
 
             //Fim da transaction
             $this->db->transComplete();
@@ -54,7 +54,7 @@ class ParentModel extends AppModel
             //Retornamos o status da transaction: true/false
             return $this->db->transStatus();
         } catch (\Throwable $th) {
-            log_message('error', "Erro ao salvar o responsável: {$th->getMessage()}");
+            log_message('error', "Erro ao salvar o professor: {$th->getMessage()}");
             return false;
         }
     }
@@ -62,51 +62,47 @@ class ParentModel extends AppModel
     public function getByCode(
         string $code,
         bool $withAddress = false,
-        bool $witthStudents = false,
-        bool $witthSubscriptions = false,
-    ): ParentStudent {
-        $parent = $this->where(['code' => $code])->first();
+    ): Teacher {
+        $teacher = $this->where(['code' => $code])->first();
 
-        if ($parent === null) {
-            throw new PageNotFoundException("Responsável não encontrado. Code: {$code}");
+        if ($teacher === null) {
+            throw new PageNotFoundException("Professor não encontrado. Code: {$code}");
         }
 
         if ($withAddress) {
-            $parent->address = model(AddressModel::class)->find($parent->address_id);
+            $teacher->address = model(AddressModel::class)->find($teacher->address_id);
         }
 
-        return $parent;
+        return $teacher;
     }
 
     public function getByID(
         string $id,
         bool $withAddress = false,
-        bool $witthStudents = false,
-        bool $witthSubscriptions = false,
-    ): ParentStudent {
-        $parent = $this->where(['id' => $id])->first();
+    ): Teacher {
+        $teacher = $this->where(['id' => $id])->first();
 
-        if ($parent === null) {
-            throw new PageNotFoundException("Responsável não encontrado. ID: {$id}");
+        if ($teacher === null) {
+            throw new PageNotFoundException("Professor não encontrado. ID: {$id}");
         }
 
         if ($withAddress) {
-            $parent->address = model(AddressModel::class)->find($parent->address_id);
+            $teacher->address = model(AddressModel::class)->find($teacher->address_id);
         }
 
-        return $parent;
+        return $teacher;
     }
 
-    public function destroy(ParentStudent $parent)
+    public function destroy(Teacher $teacher)
     {
         try {
 
             //Iniciamos a transaction [Tudo é executado ou nada será executado]
             $this->db->transException(true)->transStart();
 
-            $this->delete($parent->id);
+            $this->delete($teacher->id);
 
-            model(AddressModel::class)->delete($parent->address_id);
+            model(AddressModel::class)->delete($teacher->address_id);
 
             //Fim da transaction
             $this->db->transComplete();
@@ -114,7 +110,7 @@ class ParentModel extends AppModel
             //Retornamos o status da transaction: true/false
             return $this->db->transStatus();
         } catch (\Throwable $th) {
-            log_message('error', "Erro ao excluir o responsável: {$th->getMessage()}");
+            log_message('error', "Erro ao excluir o professor: {$th->getMessage()}");
             return false;
         }
     }

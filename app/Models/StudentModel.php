@@ -57,7 +57,7 @@ class StudentModel extends AppModel
         $student = $this->where(['id' => $id])->first();
 
         if ($student === null) {
-            throw new PageNotFoundException("Estudante não encontrado. Code: {$id}");
+            throw new PageNotFoundException("Estudante não encontrado. ID: {$id}");
         }
 
         if ($withParent) {

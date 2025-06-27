@@ -75,6 +75,16 @@
                 </li>
 
 
+                <li class="nav-item">
+                    <a class="nav-link  <?= url_is("/teachers*") ? 'active' : ''; ?>" href="<?= route_to('teachers.web'); ?>">
+                        <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                            <i class="fa-solid fa-person-chalkboard" style="color: gray; font-size: 20px;"></i>
+                        </div>
+                        <span class="nav-link-text ms-1">Professores</span>
+                    </a>
+                </li>
+
+
 
 
 

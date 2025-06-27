@@ -4,6 +4,7 @@ use App\Controllers\Api\ApiParentsController;
 use App\Controllers\HomeController;
 use App\Controllers\ParentsController;
 use App\Controllers\StudentsController;
+use App\Controllers\TeachersController;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -36,5 +37,16 @@ $routes->group('students', static function ($routes) {
 //Api Parents
 $routes->group('api', static function ($routes) {
     $routes->get('get-by-cpf', [ApiParentsController::class, 'getByCpf'], ['as' => 'api.fetch.parent.by.cpf']);
-    
+});
+
+
+// Professores
+$routes->group('teachers', static function ($routes) {
+    $routes->get('/', [TeachersController::class, 'index'], ['as' => 'teachers.web']);
+    $routes->get('show/(:alphanum)', [TeachersController::class, 'show'], ['as' => 'teachers.show']);
+    $routes->get('new', [TeachersController::class, 'new'], ['as' => 'teachers.new']);
+    $routes->post('create', [TeachersController::class, 'create'], ['as' => 'teachers.create']);
+    $routes->get('edit/(:alphanum)', [TeachersController::class, 'edit'], ['as' => 'teachers.edit']);
+    $routes->put('update/(:alphanum)', [TeachersController::class, 'update'], ['as' => 'teachers.update']);
+    $routes->delete('destroy/(:alphanum)', [TeachersController::class, 'destroy'], ['as' => 'teachers.destroy']);
 });
