@@ -76,6 +76,7 @@ class ParentsController extends BaseController
                 ->with('danger', 'Oppss! Não foi possível salvar o responsável!');
         }
 
+
         return redirect()
             ->route('parents.web')
             ->with('success', 'Responsável cadastrado com sucesso!');
