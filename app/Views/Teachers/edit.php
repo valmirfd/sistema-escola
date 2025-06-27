@@ -21,7 +21,7 @@
             </div>
             <div class="card-body">
                 <?= form_open(
-                    action: route_to('parents.update', Encrypt($teacher->id)),
+                    action: route_to('teachers.update', Encrypt($teacher->id)),
                     attributes: ['class' => 'form-floating'],
                     hidden: ['_method' => 'PUT']
                 ); ?>

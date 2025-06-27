@@ -113,7 +113,7 @@ class TeachersController extends BaseController
 
         $teacher = $this->teacherModel->getByID(id: $id, withAddress: true);
 
-        $rules = (new teacherValidation)->getRules($teacher->id);
+        $rules = (new TeacherValidation)->getRules($teacher->id);
 
         if (!$this->validate($rules)) {
             return redirect()
